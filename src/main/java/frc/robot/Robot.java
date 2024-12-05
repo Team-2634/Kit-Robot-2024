@@ -5,6 +5,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
 public class Robot extends TimedRobot {
@@ -16,8 +17,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     final XboxController xboxController = new XboxController(0);
-    final PWMSparkMax leftMotors = new PWMSparkMax(0);
-    final PWMSparkMax rightMotors = new PWMSparkMax(1); //Note change id's once we know what they are on the kitbot
+    final PWMSparkMax leftSideMotors = new PWMSparkMax(0);
+    final PWMSparkMax rightSideMotors = new PWMSparkMax(1); //Note change id's once we know what they are on the kitbot
+    final DifferentialDrive robotDrive = new DifferentialDrive(leftSideMotors::set,rightSideMotors::set);
+
+    rightSideMotors.setInverted(true); //Change to left side if kitbot motors is inverted on the left side
 
   }
 
@@ -40,6 +44,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    
 
   }
 
